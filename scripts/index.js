@@ -23,35 +23,80 @@ function checkInput(userChoice) {
     return valid;
 }
 
-function playRound(playerSelection, computerSelection) {
+//Return
+//0: Draw
+//1: Win
+//2: Lose
+function playRound() {
+    let playerSelection = getUserChoice();
+    let computerSelection = getComputerChoice();
+
     if (playerSelection === computerSelection) {
-        return `Draw! You both put ${playerSelection}.`;
+        alert(`Draw! You both put ${playerSelection}.`)
+        return 0;
     }
 
     switch(playerSelection) {
         case "ROCK": {
-                if(computerSelection === "SCISSORS") {
-                    return `You Win! ${playerSelection} beats ${computerSelection}.`
-                }
-                else return `You Lose! ${computerSelection} beats ${playerSelection}.`
+            if(computerSelection === "SCISSORS") {
+                alert(`You Win! ${playerSelection} beats ${computerSelection}.`);
+                return 1;
+            }
+            else {
+                alert(`You Lose! ${computerSelection} beats ${playerSelection}.`)
+                return 2;
+            }
         }
         case "SCISSORS": {
             if(computerSelection === "PAPER") {
-                return `You Win! ${playerSelection} beats ${computerSelection}.`
+                alert(`You Win! ${playerSelection} beats ${computerSelection}.`);
+                return 1;
             }
-            else return `You Lose! ${computerSelection} beats ${playerSelection}.`
+            else {
+                alert(`You Lose! ${computerSelection} beats ${playerSelection}.`)
+                return 2;
+            }
         }
         case "PAPER": {
             if(computerSelection === "ROCK") {
-                return `You Win! ${playerSelection} beats ${computerSelection}.`
+                alert(`You Win! ${playerSelection} beats ${computerSelection}.`);
+                return 1;
             }
-            else return `You Lose! ${computerSelection} beats ${playerSelection}.`
+            else {
+                alert(`You Lose! ${computerSelection} beats ${playerSelection}.`)
+                return 2;
+            }
         }
     }
 }
 
-let playerSelection = getUserChoice();
-let computerSelection = getComputerChoice();
+function game() {
+    let winCount = 0;
+    let loseCount = 0;
+    let drawCount = 0;
+    
+    for(let i = 0; i < 5; i++) {
+        let roundWinner = playRound();
 
+        if(roundWinner == 0) drawCount++;
 
-console.log(playRound(playerSelection, computerSelection))
+        if(roundWinner == 1) winCount++;
+        
+        if(roundWinner == 2) loseCount++;
+    }
+
+    if(winCount == loseCount) {
+        alert(`Draw! You won ${winCount} times, drawed ${drawCount} times and lost ${loseCount} times.`);
+        return 0;
+    }
+    if(winCount > loseCount) {
+        alert(`Winner! You won ${winCount} times, drawed ${drawCount} times and lost ${loseCount} times.`);
+        return 1;
+    }
+    else {
+        alert(`Loser! You lost ${loseCount} times, drawed ${drawCount} times and won ${winCount} times.`);
+        return 2;
+    }
+}
+
+console.log(game())
