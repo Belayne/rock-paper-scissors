@@ -70,12 +70,12 @@ function playRound() {
     }
 }
 
-function game() {
+function game(numberOfGames) {
     let winCount = 0;
     let loseCount = 0;
     let drawCount = 0;
     
-    for(let i = 0; i < 5; i++) {
+    for(let i = 0; i < numberOfGames; i++) {
         let roundWinner = playRound();
 
         if(roundWinner == 0) drawCount++;
@@ -99,4 +99,5 @@ function game() {
     }
 }
 
-console.log(game())
+
+

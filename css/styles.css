@@ -1,0 +1,40 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::after, *::before{
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: #1E3050;
+    background: none;
+    border: 1px solid black;
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+}
+
+i {
+    font-size: 75px;
+}
