@@ -1,5 +1,6 @@
 html {
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 *, *::after, *::before{
@@ -12,10 +13,12 @@ body {
     height: 50vh;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
+    gap: 50px;
 }
 
-.container {
+.btn-container {
     display: flex;
     width: 100%;
     justify-content: space-evenly;
@@ -37,4 +40,8 @@ button {
 
 i {
     font-size: 75px;
+}
+
+.result-div {
+    height: 50px;
 }

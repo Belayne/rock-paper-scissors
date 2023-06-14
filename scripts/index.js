@@ -1,14 +1,19 @@
 
 const MOVES = ["ROCK", "PAPER", "SCISSORS"];
-const INPUT_MESSAGE = "Rock! Paper! Scissors!\n\nType your choice."
-const INVALID_INPUT = "Try again\n\nYou can only input rock, paper or scissors."
+
+const playerBtns = document.querySelectorAll('button');
+const resultDiv = document.querySelector('div.result-div');
+
+playerBtns.forEach(
+    btn => btn.addEventListener("mousedown",playRound)
+    );
 
 function getComputerChoice() {
     let computerChoice = MOVES[Math.floor(Math.random() * 3)];
     return computerChoice;
 }
 
-function getUserChoice() {
+function getUserChoice(e) {
     let userChoice = prompt(INPUT_MESSAGE).toUpperCase();
 
     while(!checkInput(userChoice)) {
@@ -23,47 +28,58 @@ function checkInput(userChoice) {
     return valid;
 }
 
+function drawDiv(text) {
+    resultDiv.textContent = text;
+}
+
 //Return
 //0: Draw
 //1: Win
 //2: Lose
-function playRound() {
-    let playerSelection = getUserChoice();
+function playRound(e) {
+    let playerSelection = this.getAttribute('data-selection');
     let computerSelection = getComputerChoice();
 
     if (playerSelection === computerSelection) {
-        alert(`Draw! You both put ${playerSelection}.`)
+        let resultText = `Draw! You both put ${playerSelection}.`;
+        drawDiv(resultText);
         return 0;
     }
 
     switch(playerSelection) {
         case "ROCK": {
             if(computerSelection === "SCISSORS") {
-                alert(`You Win! ${playerSelection} beats ${computerSelection}.`);
+                let resultText = `You Win! ${playerSelection} beats ${computerSelection}.`;
+                drawDiv(resultText);
                 return 1;
             }
             else {
-                alert(`You Lose! ${computerSelection} beats ${playerSelection}.`)
+                let resultText = `You Lose! ${computerSelection} beats ${playerSelection}.`;
+                drawDiv(resultText);
                 return 2;
             }
         }
         case "SCISSORS": {
             if(computerSelection === "PAPER") {
-                alert(`You Win! ${playerSelection} beats ${computerSelection}.`);
+                let resultText = `You Win! ${playerSelection} beats ${computerSelection}.`;
+                drawDiv(resultText);
                 return 1;
             }
             else {
-                alert(`You Lose! ${computerSelection} beats ${playerSelection}.`)
+                let resultText = `You Lose! ${computerSelection} beats ${playerSelection}.`;
+                drawDiv(resultText);
                 return 2;
             }
         }
         case "PAPER": {
             if(computerSelection === "ROCK") {
-                alert(`You Win! ${playerSelection} beats ${computerSelection}.`);
+                let resultText = `You Win! ${playerSelection} beats ${computerSelection}.`;
+                drawDiv(resultText);
                 return 1;
             }
             else {
-                alert(`You Lose! ${computerSelection} beats ${playerSelection}.`)
+                let resultText = `You Lose! ${computerSelection} beats ${playerSelection}.`;
+                drawDiv(resultText);
                 return 2;
             }
         }
