@@ -30,21 +30,6 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function getUserChoice(e) {
-    let userChoice = prompt(INPUT_MESSAGE).toUpperCase();
-
-    while(!checkInput(userChoice)) {
-        alert(INVALID_INPUT);
-        userChoice = prompt(INPUT_MESSAGE).toUpperCase();
-    }
-    return userChoice;
-}
-
-function checkInput(userChoice) {
-    let valid = MOVES.includes(userChoice);
-    return valid;
-}
-
 function drawDiv(text) {
     resultDiv.textContent = text;
 }
@@ -71,10 +56,6 @@ function checkWin() {
         drawDiv(text)
         stopGame();
     }
-}
-
-function drawWin(text) {
-
 }
 
 //Return
@@ -143,34 +124,6 @@ function playRound(e) {
     updateScore(result);
 }
 
-function game(numberOfGames) {
-    let winCount = 0;
-    let loseCount = 0;
-    let drawCount = 0;
-    
-    for(let i = 0; i < numberOfGames; i++) {
-        let roundWinner = playRound();
-
-        if(roundWinner == 0) drawCount++;
-
-        if(roundWinner == 1) winCount++;
-        
-        if(roundWinner == 2) loseCount++;
-    }
-
-    if(winCount == loseCount) {
-        alert(`Draw! You won ${winCount} times, drawed ${drawCount} times and lost ${loseCount} times.`);
-        return 0;
-    }
-    if(winCount > loseCount) {
-        alert(`Winner! You won ${winCount} times, drawed ${drawCount} times and lost ${loseCount} times.`);
-        return 1;
-    }
-    else {
-        alert(`Loser! You lost ${loseCount} times, drawed ${drawCount} times and won ${winCount} times.`);
-        return 2;
-    }
-}
 
 
 
